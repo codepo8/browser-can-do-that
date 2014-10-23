@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS selector demo</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="styles/styles.css" type="text/css">
+  <style>
+  	body {
+      padding: 1em;
+  		background: #111;
+  		color: #ccc;
+  		font-family: helvetica, arial, sans-serif;
+  		font-weight: lighter;
+  	}
+  	h1 {
+  		font-weight: lighter;
+  	}
+  	section style {
+  		display: block;
+  		border: 1px solid #999;
+  		background: #ccc;
+  		padding: 1em 2em;
+  		color: #fff;
+  		font-family: monaco, monospace;
+  		clear: both;
+  		margin: 1em 0;
+  	}
+  	#demo li {
+  		transition: 1s;
+  	}
+  	#demo li, #examples li {
+  		padding: .2em 0 .2em 0;
+  	}
+    #demo, #examples {
+      width: 20%;
+      float: left;
+    }
+    #examples {
+      width: 70%;
+      list-style: none;
+    }
+    button {
+      text-align: left;
+      width: 100%;
+      font-family: helvetica, arial, sans-serif;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1em;
+      padding: 2px 0;
+      font-weight: normal;
+      transition: 1s;
+      outline: none;
+    }
+    button:active, button.current {
+      color: lime;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>CSS selector demo</h1>
+</header>
+<section>
+<ul id="demo">
+	<li>Item #1</li>
+	<li>Item #2</li>
+	<li>Item #3</li>
+	<li>Item #4</li>
+	<li>Item #5</li>
+	<li>Item #6</li>
+	<li>Item #7</li>
+	<li>Item #8</li>
+</ul>
+<ul id="examples">
+	<li><button>#demo li:first-child</button></li>
+	<li><button>#demo li:last-child</button></li>
+	<li><button>#demo li:nth-child(even)</button></li>
+	<li><button>#demo li:nth-child(odd)</button></li>
+	<li><button>#demo li:nth-child(3n)</button></li>
+	<li><button>#demo li:nth-child(3n+1)</button></li>
+</ul>
+<style contenteditable>
+</style>
+<script>
+	var activebutton = false;
+	document.querySelector('#examples').addEventListener('click', function(ev) {
+		if (ev.target.tagName === 'BUTTON') {
+			document.querySelectorAll('style')[1].innerHTML = ev.target.innerHTML + '{ background: #09c; }';
+			if (activebutton) {
+				activebutton.classList.remove('current');
+			}
+			activebutton = ev.target;
+			activebutton.classList.add('current');
+		}
+		ev.preventDefault();
+	}, false);
+
+</script>
+</body>
+</html>
